@@ -1,6 +1,6 @@
 <template>
 
-  <div id="app" v-cloak> 
+  <div id="todolist"> 
     <img alt="Vue logo" src="https://cdn-icons-png.flaticon.com/512/6056/6056529.png" width="100">
     <h1>
       to do list
@@ -13,14 +13,15 @@
     />
     <button
     v-on:click="inputGetValue"
-    > Add</button>
+    > Add
+    </button>
     <hr>
 
 
     <ul>
     <TodoList 
-    v-for="item in todos" :key="item.id"
-    v-bind:todos="item" 
+    v-for="todos in todos" :key="todos.id"
+    v-bind:todos="todos" 
     
     v-on:deleteTask="deleteTask"
     v-on:checBoxTask="checBoxTask"
@@ -31,7 +32,7 @@
 </template>
 
 <script>
-import TodoList from '@/components/TodoList';
+import TodoList from '@/components/TodoItem';
 export default {
   name: 'App',
   data () {
@@ -56,7 +57,6 @@ export default {
       
     },
 
-
     checBoxTask (id) {
       let index = this.todos.findIndex(item => item.id === id)
       if (this.todos[index].complited === true) {
@@ -74,7 +74,8 @@ export default {
       this.todos.splice(index, 1)
       console.log(index)
      
-    }
+    },
+
 
   },
   components: {
@@ -84,7 +85,7 @@ export default {
 </script>
 
 <style>
-#app {
+#todolist {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
