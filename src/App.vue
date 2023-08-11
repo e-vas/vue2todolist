@@ -37,18 +37,18 @@ export default {
   name: 'App',
   data () {
     return {
-      todos: [
-        {id: 1, title: 'Купить молоко', complited: false},
-        {id: 2, title: 'Купить масло', complited: true},
-        {id: 3, title: 'Купить хлеб', complited: true},
-        {id: 4, title: 'Купить колбасу', complited: false},
-      ],
+      todos: [],
       newTask: "",
-
     }
-    
-
   },
+  beforeCreate() {
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+    .then(response => response.json())
+    .then(json => {
+      this.todos = json
+      console.log('create new item')
+      })
+  },  
   methods: {
     inputGetValue () {
       let uuid = Date.now();
@@ -76,7 +76,6 @@ export default {
      
     },
 
-
   },
   components: {
     TodoList
@@ -90,7 +89,17 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #888f96;
   margin-top: 60px;
+  
 }
+ul {
+  list-style: none;
+  text-align: left;
+  margin-left: 480px;
+  font-size: 20px;
+}
+
+
+
 </style>
