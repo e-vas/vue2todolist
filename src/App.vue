@@ -1,33 +1,30 @@
 <template>
+  <div id="todolist">
 
-  <div id="todolist"> 
-    <img alt="Vue logo" src="https://cdn-icons-png.flaticon.com/512/6056/6056529.png" width="100">
-    <h1>
-      to do list
-    </h1>
-    <hr>
-    <input 
-    type="text" 
-    placeholder="Add task" 
-    v-model="newTask"
-    />
-    <button
-    v-on:click="inputGetValue"
-    > Add
-    </button>
-    <hr>
+    <v-card class="mx-auto" max-width="500" >
+        <img alt="Vue logo" src="https://cdn-icons-png.flaticon.com/512/6056/6056529.png" width="100">
+        <h1>
+          to do list
+        </h1>
+
+      <v-input>
+        <v-text-field label="Add task" v-model="newTask" />
+        <v-btn class="mx-2" fab dark small color=#69a563f0 v-on:click="inputGetValue">
+          <v-icon dark>
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </v-input>
+
+      <v-list>
+        <TodoList v-for="todos in todos" :key="todos.id" v-bind:todos="todos" v-on:deleteTask="deleteTask"
+          v-on:checBoxTask="checBoxTask" />
+      </v-list>
+
+    </v-card>
 
 
-    <ul>
-    <TodoList 
-    v-for="todos in todos" :key="todos.id"
-    v-bind:todos="todos" 
-    
-    v-on:deleteTask="deleteTask"
-    v-on:checBoxTask="checBoxTask"
-    /> 
-    </ul>
-  
+
   </div>
 </template>
 
@@ -35,29 +32,34 @@
 import TodoList from '@/components/TodoItem';
 export default {
   name: 'App',
-  data () {
+  data() {
     return {
       todos: [],
       newTask: "",
+
     }
   },
   beforeCreate() {
     fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
-    .then(response => response.json())
-    .then(json => {
-      this.todos = json
-      console.log('create new item')
+      .then(response => response.json())
+      .then(json => {
+        this.todos = json
+        //console.log('create new item')
       })
-  },  
+  },
   methods: {
-    inputGetValue () {
-      let uuid = Date.now();
-      this.todos.push({id: uuid, title: this.newTask, complited: false})
-      this.newTask = " "
-      
+    rules() {
+
     },
 
-    checBoxTask (id) {
+    inputGetValue() {
+      let uuid = Date.now();
+      this.todos.push({ id: uuid, title: this.newTask, complited: false })
+      this.newTask = " "
+
+    },
+
+    checBoxTask(id) {
       let index = this.todos.findIndex(item => item.id === id)
       if (this.todos[index].complited === true) {
         this.todos[index].complited = false
@@ -68,12 +70,12 @@ export default {
       console.log(this.todos[index].complited)
 
     },
-    deleteTask (id) {
+    deleteTask(id) {
       let index = this.todos.findIndex(item => item.id === id)
       //this.todos = this.todos.filter(item => item.id !== id)
       this.todos.splice(index, 1)
-      console.log(index)
-     
+      //console.log(index)
+
     },
 
   },
@@ -91,15 +93,13 @@ export default {
   text-align: center;
   color: #888f96;
   margin-top: 60px;
-  
+
 }
+
 ul {
   list-style: none;
   text-align: left;
   margin-left: 480px;
   font-size: 20px;
 }
-
-
-
 </style>

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/6056/6056529.png">
     <!--  <title>To Do List</title> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
+    
   </head>
   <body>
     <style> 
     body {
-      background-color: rgba(17, 16, 16, 0.938);
+      background-color: rgba(17, 16, 16, 0);
     }
     </style>
     
@@ -20,5 +23,13 @@
       </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        vuetify: new Vuetify(),
+      })
+    </script>
   </body>
 </html>
