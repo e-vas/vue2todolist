@@ -1,13 +1,26 @@
 <template>
+  
   <div id="todolist">
-
+  <v-app>
     <v-card class="mx-auto" max-width="500" >
+      <div class="d-flex 
+      justify-center 
+      flex-row 
+      align-center 
+
+      " >
         <img alt="Vue logo" src="https://cdn-icons-png.flaticon.com/512/6056/6056529.png" width="100">
         <h1>
           to do list
         </h1>
-
-      <v-input>
+      </div>
+      <v-input class="
+      rounded-lg
+      me-3
+      ms-5
+      "
+      elevation="5"
+      >
         <v-text-field label="Add task" v-model="newTask" />
         <v-btn class="mx-2" fab dark small color=#69a563f0 v-on:click="inputGetValue">
           <v-icon dark>
@@ -16,15 +29,18 @@
         </v-btn>
       </v-input>
 
-      <v-list>
-        <TodoList v-for="todos in todos" :key="todos.id" v-bind:todos="todos" v-on:deleteTask="deleteTask"
-          v-on:checBoxTask="checBoxTask" />
+      <v-list class="d-flex
+        flex-column-reverse">
+        <TodoList v-for="todos in todos" :key="todos.id" 
+        v-bind:todos="todos" v-on:deleteTask="deleteTask"
+        v-on:checBoxTask="checBoxTask"
+         />
       </v-list>
 
     </v-card>
 
 
-
+  </v-app>
   </div>
 </template>
 
@@ -101,5 +117,9 @@ ul {
   text-align: left;
   margin-left: 480px;
   font-size: 20px;
+}
+
+h1 {
+  color: #0000009a;
 }
 </style>
