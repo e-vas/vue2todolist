@@ -2,14 +2,11 @@
   <v-list-item
   class="
   d-flex
-  flex-wrap
-  justify-start
-  mx-2
-  text-left"
+  justify-start"
   >
     <v-checkbox type="checkbox" v-on:click="$emit('checBoxTask', todos.id)" v-bind:checked="todos.complited"
       color=#69a563f0 />
-    <v-list-item-title>
+    <v-list-item-title class="text-left">
       {{ todos.title }}
     </v-list-item-title>
     <v-btn color=#c91a1a elevation="6" icon large v-on:click="$emit('deleteTask', todos.id)">
