@@ -2,29 +2,15 @@
   <div id="todolist">
     <v-app>
       <v-card class="mx-auto rounded-xl pb-3" width="500">
-        <div class="d-flex 
-      justify-center 
-      flex-row 
-      align-center 
-
-
-      ">
-          <v-img alt="Vue logo" src="https://cdn-icons-png.flaticon.com/512/6056/6056529.png" 
-            max-height="70"
-            max-width="70"
-            contain ></v-img>
+        <div class="d-flex justify-center flex-row align-center">
+          <v-img alt="Vue logo" src="https://cdn-icons-png.flaticon.com/512/6056/6056529.png" max-height="70"
+            max-width="70" contain></v-img>
           <h1>
             to do list
           </h1>
         </div>
-        <div class="
-          d-flex
-          flex-rowa
-          align-center 
-          rounded-lg
-          me-3
-          ms-5" elevation="5">
-          <v-text-field label="Add task" v-model="newTask" v-on:keyup.enter="inputGetValue" counter="50"/>
+        <div class="d-flex flex-rowa align-center rounded-lg me-3 ms-5" elevation="5">
+          <v-text-field label="Add task" v-model="newTask" v-on:keyup.enter="inputGetValue" counter="50" />
           <v-btn class="mx-2" fab dark small color=#69a563f0 v-on:click="inputGetValue">
             <v-icon dark>
               mdi-plus
@@ -32,9 +18,8 @@
           </v-btn>
         </div>
 
-        <v-list class="d-flex
-        flex-column">
-          <TodoList v-for="todos in todos.slice(itemsStart, itemsEnd)" :key="todos.id" v-bind:todos="todos"
+        <v-list class="d-flex flex-column">
+          <TodoList v-for="todos in todos.toReversed().slice(itemsStart, itemsEnd)" :key="todos.id" v-bind:todos="todos"
             v-on:deleteTask="deleteTask" v-on:checBoxTask="checBoxTask" />
         </v-list>
 
@@ -86,12 +71,12 @@ export default {
     },
 
     inputGetValue() {
-      if (this.newTask != "" && this.newTask != " " && this.newTask.length <= 50){
+      if (this.newTask != "" && this.newTask != " " && this.newTask.length <= 50) {
         let uuid = Date.now();
-      this.todos.push({ id: uuid, title: this.newTask, complited: false })
-      this.newTask = ""
+        this.todos.push({ id: uuid, title: this.newTask, complited: false })
+        this.newTask = ""
       }
-      
+
 
     },
 
